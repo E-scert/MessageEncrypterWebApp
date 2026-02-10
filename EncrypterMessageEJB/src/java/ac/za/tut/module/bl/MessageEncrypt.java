@@ -31,9 +31,9 @@ public class MessageEncrypt implements MessageEncryptorInt{
                     
                     //encrypt the message
                     if(Character.isLetter(cChar)){
-                        int cPosition = alphabet.indexOf(cChar);
-                        int nPosition = (cPosition + shifKey) % 26;
-                        char nChar = alphabet.charAt(nPosition);
+                        int cPosition = alphabet.indexOf(cChar);//current character postion
+                        int nPosition = (cPosition + shifKey) % 26;//new position iin place of the old position
+                        char nChar = alphabet.charAt(nPosition); //new char placement
                         cipher.append(nChar);
                     }else{
                     
@@ -44,6 +44,34 @@ public class MessageEncrypt implements MessageEncryptorInt{
       MessageEncrypter entity = new MessageEncrypter(message,cipher.toString());
        em.persist(entity);
        return entity;
+    }
+
+    @Override
+    public MessageEncrypter encryptNumberMessage(String message, Integer shiftKey) {
+        String alphabet = "abcdefghijklmnopqrstuvwxyz!@#$&?";//add special characters
+        StringBuilder numberCipher = new StringBuilder();
+        
+        String origMessage = message.toLowerCase();
+        for(int i =0; i < origMessage.length();i++){
+         char cChar = origMessage.charAt(i);
+         
+         
+         //encrypt the message
+         if(Character.isLetter(cChar)){
+             int cPosition = alphabet.indexOf(cChar);//current possition
+             int nPosition = (cPosition + shiftKey)% 32;//new position of character
+             int nChar = alphabet.charAt(nPosition);//new numbers placement of the character
+             numberCipher.append(nChar);
+         
+         } else{
+             numberCipher.append(cChar);
+         }    
+   
+       }
+         // create the entity
+                MessageEncrypter entity = new MessageEncrypter(message, numberCipher.toString());
+                em.persist(entity);
+                return entity;
     }
     
 }
