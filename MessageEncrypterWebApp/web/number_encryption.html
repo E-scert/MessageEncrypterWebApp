@@ -14,6 +14,15 @@ and open the template in the editor.
         <h1>Number Encryption</h1>
         <form action="EncryptMessageNumberServlet.do" method="post">
        <table>
+                <!-- type of encryption set to default-->
+                       <tr>
+                           <td>Encryption Type:</td>
+                           <td>
+                               <select name="encryptionType">
+                                   <option value="number encryption">Number Encryption</option>
+                               </select>
+                           </td>
+                       </tr>
                 <tr>
                     <td>Message</td>
                     <td><input type="text" name="message"/></td>

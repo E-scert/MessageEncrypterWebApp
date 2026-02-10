@@ -20,7 +20,7 @@ public class MessageEncrypt implements MessageEncryptorInt{
     @PersistenceContext(unitName ="EncrypterMessageEJBPU")
     private EntityManager em;
     @Override
-    public MessageEncrypter encryptMessage(String message,Integer shifKey) {
+    public MessageEncrypter encryptMessage(String message,Integer shiftKey,String encryptionType) {
         
        String alphabet = "abcdefghijklmnopqrstuvwxyz";
        StringBuilder cipher = new StringBuilder();
@@ -32,7 +32,7 @@ public class MessageEncrypt implements MessageEncryptorInt{
                     //encrypt the message
                     if(Character.isLetter(cChar)){
                         int cPosition = alphabet.indexOf(cChar);//current character postion
-                        int nPosition = (cPosition + shifKey) % 26;//new position iin place of the old position
+                        int nPosition = (cPosition + shiftKey) % 26;//new position iin place of the old position
                         char nChar = alphabet.charAt(nPosition); //new char placement
                         cipher.append(nChar);
                     }else{
@@ -41,14 +41,14 @@ public class MessageEncrypt implements MessageEncryptorInt{
                     }
         }
       //create entity 
-      MessageEncrypter entity = new MessageEncrypter(message,cipher.toString());
+      MessageEncrypter entity = new MessageEncrypter(message,cipher.toString(),encryptionType,shiftKey);
        em.persist(entity);
        return entity;
     }
 
     @Override
-    public MessageEncrypter encryptNumberMessage(String message, Integer shiftKey) {
-        String alphabet = "abcdefghijklmnopqrstuvwxyz!@#$&?";//add special characters
+    public MessageEncrypter encryptNumberMessage(String message, Integer shiftKey,String encryptionType) {
+        String alphabet = "abcdefghijklmnopqrstuvwxyz";
         StringBuilder numberCipher = new StringBuilder();
         
         String origMessage = message.toLowerCase();
@@ -59,7 +59,7 @@ public class MessageEncrypt implements MessageEncryptorInt{
          //encrypt the message
          if(Character.isLetter(cChar)){
              int cPosition = alphabet.indexOf(cChar);//current possition
-             int nPosition = (cPosition + shiftKey)% 32;//new position of character
+             int nPosition = (cPosition + shiftKey)% 26;//new position of character
              int nChar = alphabet.charAt(nPosition);//new numbers placement of the character
              numberCipher.append(nChar);
          
@@ -69,7 +69,7 @@ public class MessageEncrypt implements MessageEncryptorInt{
    
        }
          // create the entity
-                MessageEncrypter entity = new MessageEncrypter(message, numberCipher.toString());
+                MessageEncrypter entity = new MessageEncrypter(message, numberCipher.toString(),encryptionType,shiftKey);
                 em.persist(entity);
                 return entity;
     }

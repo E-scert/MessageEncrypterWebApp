@@ -14,7 +14,7 @@ import javax.ejb.Local;
  */
 @Local
 public interface MessageEncryptorInt {
-    MessageEncrypter encryptMessage(String message, Integer shiftKey);
-    MessageEncrypter encryptNumberMessage(String message, Integer shiftKey);
+    MessageEncrypter encryptMessage(String message, Integer shiftKey,String encryptionType);
+    MessageEncrypter encryptNumberMessage(String message, Integer shiftKey, String encrypTionType);
     
 }

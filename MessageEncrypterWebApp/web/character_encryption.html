@@ -19,6 +19,15 @@ and open the template in the editor.
         <form action="EncryptMessageServlet.do" method="post">
             
             <table>
+                 <!-- type of encryption set to default-->
+                       <tr>
+                           <td>Encryption Type:</td>
+                           <td>
+                               <select name="encryptionType">
+                                   <option value="character encryption">Character Encryption</option>
+                               </select>
+                           </td>
+                       </tr>
                 <tr>
                     <td>Message</td>
                     <td><input type="text" name="message"/></td>
@@ -29,6 +38,7 @@ and open the template in the editor.
                                         <td><input type="text" name="shiftkey"/></td>
 
                                     </tr>
+                      
                  <tr>
                     <td></td>
                     <td><input type="submit" value="ENCRYPT"/></td>

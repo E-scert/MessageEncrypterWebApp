@@ -51,12 +51,14 @@ public class EncryptMessageServlet extends HttpServlet {
             throws ServletException, IOException {
         String message = request.getParameter("message");
         Integer shiftKey = Integer.parseInt(request.getParameter("shiftkey"));
+        String encryptiontype = request.getParameter("encryptionType");
         
-       MessageEncrypter entity = me.encryptMessage(message,shiftKey);
+       MessageEncrypter entity = me.encryptMessage(message,shiftKey,encryptiontype);
       
        //return results to the user
        request.setAttribute("message",entity.getMessage());
        request.setAttribute("encrypted",entity.getEncryptedMessage());
+       request.setAttribute("encryptionType", encryptiontype);
        
        //request dispatcher 
        RequestDispatcher disp = request.getRequestDispatcher("encrypted_message_outcome.jsp");

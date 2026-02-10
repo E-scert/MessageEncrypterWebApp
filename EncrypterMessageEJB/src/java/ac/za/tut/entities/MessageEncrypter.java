@@ -25,9 +25,18 @@ public class MessageEncrypter implements Serializable {
     
     private String message; 
     private String encryptedMessage;
+    private String encryptionType;
+    private Integer shifKeyNumber;
 
     //JPA
     public MessageEncrypter() {
+    }
+
+    public MessageEncrypter(String message, String encryptedMessage, String encryptionType, Integer shifKeyNumber) {
+        this.message = message;
+        this.encryptedMessage = encryptedMessage;
+        this.encryptionType = encryptionType;
+        this.shifKeyNumber = shifKeyNumber;
     }
     
     
@@ -36,6 +45,26 @@ public class MessageEncrypter implements Serializable {
         this.message = message;
         this.encryptedMessage = encryptedMessage;
     }
+
+    
+
+    public String getEncryptionType() {
+        return encryptionType;
+    }
+
+    public void setEncryptionType(String encryptionType) {
+        this.encryptionType = encryptionType;
+    }
+
+    public Integer getShifKeyNumber() {
+        return shifKeyNumber;
+    }
+
+    public void setShifKeyNumber(Integer shifKeyNumber) {
+        this.shifKeyNumber = shifKeyNumber;
+    }
+    
+    
 
   
     public String getMessage() {

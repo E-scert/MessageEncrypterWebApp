@@ -54,8 +54,9 @@ public class EncryptMessageNumberServlet extends HttpServlet {
             throws ServletException, IOException {
             String message = request.getParameter("message");
         Integer shiftKey = Integer.parseInt(request.getParameter("shiftkey"));
+        String encryptionType = request.getParameter("encryptionType");
         
-       MessageEncrypter entity = me.encryptNumberMessage(message, shiftKey);
+       MessageEncrypter entity = me.encryptNumberMessage(message, shiftKey,encryptionType);
       
        //return results to the user
        request.setAttribute("message",entity.getMessage());
