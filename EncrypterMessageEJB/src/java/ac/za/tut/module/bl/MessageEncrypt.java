@@ -20,7 +20,7 @@ public class MessageEncrypt implements MessageEncryptorInt{
     @PersistenceContext(unitName ="EncrypterMessageEJBPU")
     private EntityManager em;
     @Override
-    public MessageEncrypter encryptMessage(String message) {
+    public MessageEncrypter encryptMessage(String message,Integer shifKey) {
         
        String alphabet = "abcdefghijklmnopqrstuvwxyz";
        StringBuilder cipher = new StringBuilder();
@@ -32,14 +32,13 @@ public class MessageEncrypt implements MessageEncryptorInt{
                     //encrypt the message
                     if(Character.isLetter(cChar)){
                         int cPosition = alphabet.indexOf(cChar);
-                        int nPosition = (cPosition + 3) % 26;
-                        int nChar = alphabet.charAt(nPosition);
+                        int nPosition = (cPosition + shifKey) % 26;
+                        char nChar = alphabet.charAt(nPosition);
                         cipher.append(nChar);
                     }else{
                     
                     cipher.append(cChar);//append the message
                     }
-          
         }
       //create entity 
       MessageEncrypter entity = new MessageEncrypter(message,cipher.toString());

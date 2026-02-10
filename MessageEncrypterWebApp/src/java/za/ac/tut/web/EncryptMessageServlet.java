@@ -38,7 +38,6 @@ public class EncryptMessageServlet extends HttpServlet {
             throws ServletException, IOException {
        
     }
-
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -51,8 +50,9 @@ public class EncryptMessageServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String message = request.getParameter("message");
+        Integer shiftKey = Integer.parseInt(request.getParameter("shiftkey"));
         
-       MessageEncrypter entity = me.encryptMessage(message);
+       MessageEncrypter entity = me.encryptMessage(message,shiftKey);
       
        //return results to the user
        request.setAttribute("message",entity.getMessage());
