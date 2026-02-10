@@ -60,6 +60,7 @@ public class EncryptMessageServlet extends HttpServlet {
        
        //request dispatcher 
        RequestDispatcher disp = request.getRequestDispatcher("encrypted_message_outcome.jsp");
+       //returns the data or communicates with the http
        disp.forward(request, response);
     }
 

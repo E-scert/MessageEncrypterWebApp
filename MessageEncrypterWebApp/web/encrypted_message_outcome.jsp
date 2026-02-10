@@ -18,7 +18,9 @@
           String encryptedMessage = (String)request.getAttribute("encrypted");
         %>
         <p>
-            Origianl message <b><%=message%></b>
+            Original message <b><%=message%></b>
+            <br>
+            Encrypted text: <b><%=encryptedMessage%></b>
         <p/>
     </body>
 </html>
