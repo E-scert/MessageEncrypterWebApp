@@ -26,6 +26,12 @@ public class MessageEncrypter implements Serializable {
     private String message; 
     private String encryptedMessage;
 
+    //JPA
+    public MessageEncrypter() {
+    }
+    
+    
+
     public MessageEncrypter(String message, String encryptedMessage) {
         this.message = message;
         this.encryptedMessage = encryptedMessage;

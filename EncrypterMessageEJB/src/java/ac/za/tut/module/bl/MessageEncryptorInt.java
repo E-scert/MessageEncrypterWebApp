@@ -6,12 +6,14 @@
 package ac.za.tut.module.bl;
 
 import ac.za.tut.entities.MessageEncrypter;
+import javax.ejb.Local;
 
 /**
  *
  * @author JREscert
  */
+@Local
 public interface MessageEncryptorInt {
-    void encryptMessage(String message);
+    MessageEncrypter encryptMessage(String message);
     
 }

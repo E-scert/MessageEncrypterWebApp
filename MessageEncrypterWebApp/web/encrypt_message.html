@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Encrypt Message Page</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h2>Encrypt Message</h2>
+        <p>
+            Please enter your message Below to encrypt it.
+            
+        </p>
+        <form action="EncryptMessageServlet.do" method="post">
+            
+            <table>
+                <tr>
+                    <td>Message</td>
+                    <td><input type="text" name="message"/></td>
+                </tr>
+                 <tr>
+                    <td></td>
+                    <td><input type="submit" value="ENCRYPT"/></td>
+                </tr>
+            </table>
+        </form>
+    </body>
+</html>
