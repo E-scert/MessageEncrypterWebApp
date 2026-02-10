@@ -6,15 +6,21 @@
 package ac.za.tut.module.bl;
 
 import ac.za.tut.entities.MessageEncrypter;
+import javax.ejb.Local;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  *
  * @author JREscert
  */
+@Stateless
 public class MessageEncrypt implements MessageEncryptorInt{
-
+    @PersistenceContext(unitName ="EncrypterMessageEJBPU")
+    private EntityManager em;
     @Override
-    public void encryptMessage(String message) {
+    public MessageEncrypter encryptMessage(String message) {
         
        String alphabet = "abcdefghijklmnopqrstuvwxyz";
        StringBuilder cipher = new StringBuilder();
@@ -35,11 +41,10 @@ public class MessageEncrypt implements MessageEncryptorInt{
                     }
           
         }
-       //place the attributes 
-       MessageEncrypter messageEncrypt = new MessageEncrypter(message,cipher.toString());
-        messageEncrypt.setMessage(message);
-        messageEncrypt.setEncryptedMessage(cipher.toString());
-       
+      //create entity 
+      MessageEncrypter entity = new MessageEncrypter(message,cipher.toString());
+       em.persist(entity);
+       return entity;
     }
     
 }
