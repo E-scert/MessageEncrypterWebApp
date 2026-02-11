@@ -4,9 +4,17 @@
         <servlet-name>EncryptMessageServlet</servlet-name>
         <servlet-class>za.ac.tut.web.EncryptMessageServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>lListAllServlet</servlet-name>
+        <servlet-class>za.ac.tut.web.ListAllServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>EncryptMessageServlet</servlet-name>
         <url-pattern>/EncryptMessageServlet.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>lListAllServlet</servlet-name>
+        <url-pattern>/lListAllServlet.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
