@@ -32,12 +32,16 @@
                 if(list != null){
                 for(MessageEncrypter me : list){
                     %>
-                    <td><%= me.getId() %>&nbsp;&nbsp;</td>
-                    <td><%= me.getMessage() %>&nbsp;&nbsp;</td>
-                    <td><%= me.getEncryptedMessage() %>&nbsp;&nbsp;</td>
-                    <td><%= me.getEncryptionType() %>&nbsp;&nbsp;</td>
-                    <td><%= me.getShifKeyNumber() %></td>
-
+                    <tr>
+                     <td><%= me.getId()%>&nbsp;</td>
+                    <td><%= me.getMessage() %></td>
+                    <td><%= me.getEncryptedMessage() %>&nbsp;</td>
+                    <td><%= me.getEncryptionType() %>&nbsp;</td>
+                    <td><%= me.getShifKeyNumber() %></td>  
+                        
+                    </tr>
+                <%    
+                  
                    }
                 }
                 %>
