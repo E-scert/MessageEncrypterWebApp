@@ -10,12 +10,21 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 /**
  *
  * @author JREscert
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name="findAll",query="SELECT m  FROM Messageencrypter m"),
+    @NamedQuery(name="findByEncryptionType",query="SELECT m FROM messageEncrpter m WHERE m.encryptionType = : encryptionType"),
+    @NamedQuery(name="findByShiftKey",query="SeLECT m MessageEncrypter m WHERE m.shiftKeyNumber =: shiftKey"),
+    
+
+})
 public class MessageEncrypter implements Serializable {
 
     private static final long serialVersionUID = 1L;

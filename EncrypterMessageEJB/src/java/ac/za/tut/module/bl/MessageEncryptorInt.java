@@ -6,6 +6,7 @@
 package ac.za.tut.module.bl;
 
 import ac.za.tut.entities.MessageEncrypter;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -14,7 +15,14 @@ import javax.ejb.Local;
  */
 @Local
 public interface MessageEncryptorInt {
+    
     MessageEncrypter encryptMessage(String message, Integer shiftKey,String encryptionType);
     MessageEncrypter encryptNumberMessage(String message, Integer shiftKey, String encrypTionType);
+    //query methods
+    List<MessageEncrypter> findAll();
+    List<MessageEncrypter> findByEncryptionType(String encryptionType);
+    List<MessageEncrypter> findByShiftKey(Integer shiftKey);
+    
+    
     
 }

@@ -6,6 +6,7 @@
 package ac.za.tut.module.bl;
 
 import ac.za.tut.entities.MessageEncrypter;
+import java.util.List;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -72,6 +73,22 @@ public class MessageEncrypt implements MessageEncryptorInt{
                 MessageEncrypter entity = new MessageEncrypter(message, numberCipher.toString(),encryptionType,shiftKey);
                 em.persist(entity);
                 return entity;
+    }
+
+    @Override
+    public List<MessageEncrypter> findAll() {
+        return em.createNamedQuery("findAll",MessageEncrypter.class).getResultList();
+        
+    }
+
+    @Override
+    public List<MessageEncrypter> findByEncryptionType(String encryptionType) {
+       return em.createNamedQuery("findByEncryptionType",MessageEncrypter.class).setParameter("encryptionType",encryptionType).getResultList();
+    }
+
+    @Override
+    public List<MessageEncrypter> findByShiftKey(Integer shiftKey) {
+        return em.createNamedQuery("findBySiftKey",MessageEncrypter.class).setParameter("shiftKey",shiftKey).getResultList();
     }
     
 }
