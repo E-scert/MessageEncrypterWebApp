@@ -19,11 +19,9 @@ import javax.persistence.NamedQuery;
  */
 @Entity
 @NamedQueries({
-    @NamedQuery(name="findAll",query="SELECT m  FROM MessageEncrypter m"),
-    @NamedQuery(name="findByEncryptionType",query="SELECT m FROM MessageEncrpter m WHERE m.encryptionType = : encryptionType"),
-    @NamedQuery(name="findByShiftKey",query="SeLECT m MessageEncrypter m WHERE m.shiftKeyNumber =: shiftKey"),
-    
-
+    @NamedQuery(name="findAll",query="SELECT m FROM MessageEncrypter m"),
+    @NamedQuery(name="findByEncryptionType",query="SELECT m FROM MessageEncrypter m WHERE m.encryptionType =:encryptionType"),
+    @NamedQuery(name="findByShiftKey",query = "SELECT m FROM MessageEncrypter m WHERE m.shifKeyNumber =:shifKeyNumber")
 })
 public class MessageEncrypter implements Serializable {
 
