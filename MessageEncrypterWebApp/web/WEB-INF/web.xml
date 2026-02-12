@@ -8,6 +8,10 @@
         <servlet-name>ListAllServlet</servlet-name>
         <servlet-class>za.ac.tut.web.ListAllServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SearchByEncryptionTypeServlet</servlet-name>
+        <servlet-class>za.ac.tut.web.SearchByEncryptionTypeServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>EncryptMessageServlet</servlet-name>
         <url-pattern>/EncryptMessageServlet.do</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>ListAllServlet</servlet-name>
         <url-pattern>/ListAllServlet.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchByEncryptionTypeServlet</servlet-name>
+        <url-pattern>/SearchByEncryptionTypeServlet.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
