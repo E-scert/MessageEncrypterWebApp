@@ -12,6 +12,10 @@
         <servlet-name>SearchByEncryptionTypeServlet</servlet-name>
         <servlet-class>za.ac.tut.web.SearchByEncryptionTypeServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SearchByShiftKeyServlet</servlet-name>
+        <servlet-class>za.ac.tut.web.SearchByShiftKeyServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>EncryptMessageServlet</servlet-name>
         <url-pattern>/EncryptMessageServlet.do</url-pattern>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>SearchByEncryptionTypeServlet</servlet-name>
         <url-pattern>/SearchByEncryptionTypeServlet.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchByShiftKeyServlet</servlet-name>
+        <url-pattern>/SearchByShiftKeyServlet.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
