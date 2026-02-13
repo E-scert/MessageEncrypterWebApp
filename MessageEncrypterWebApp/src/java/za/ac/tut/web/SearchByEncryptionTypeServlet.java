@@ -5,10 +5,13 @@
  */
 package za.ac.tut.web;
 
+import ac.za.tut.entities.MessageEncrypter;
 import ac.za.tut.module.bl.MessageEncryptorInt;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.ejb.EJB;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -35,9 +38,20 @@ public class SearchByEncryptionTypeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String 
+        String encryptionT = request.getParameter("type");
+        String encryptionType ="character encryption";
         
-        List<MessageEncrypter> list = mei.findByEncryptionType();
+        if(encryptionT.equalsIgnoreCase("char")){
+            
+             encryptionType ="character encryption";
+             
+        }else if(encryptionT.equalsIgnoreCase("num")){
+            
+              encryptionType ="number encryption";
+              
+        }
+        
+        List<MessageEncrypter> list = mei.findByEncryptionType(encryptionType);
         
         //set the attribute
         request.setAttribute("list",list);

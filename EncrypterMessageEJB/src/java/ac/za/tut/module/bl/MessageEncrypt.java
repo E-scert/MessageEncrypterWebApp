@@ -82,8 +82,8 @@ public class MessageEncrypt implements MessageEncryptorInt{
     }
 
     @Override
-    public List<MessageEncrypter> findByEncryptionType() {
-       return em.createNamedQuery("findByEncryptionType",MessageEncrypter.class).getResultList();
+    public List<MessageEncrypter> findByEncryptionType(String encryptionType) {
+       return em.createNamedQuery("findByEncryptionType",MessageEncrypter.class).setParameter("encryptionType",encryptionType).getResultList();
     }
 
     @Override

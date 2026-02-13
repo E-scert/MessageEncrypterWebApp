@@ -20,7 +20,7 @@ public interface MessageEncryptorInt {
     MessageEncrypter encryptNumberMessage(String message, Integer shiftKey, String encrypTionType);
     //query methods
     List<MessageEncrypter> findAll();
-    List<MessageEncrypter> findByEncryptionType();
+    List<MessageEncrypter> findByEncryptionType(String encryptionType);
     List<MessageEncrypter> findByShiftKey(Integer shiftKey);
     
     

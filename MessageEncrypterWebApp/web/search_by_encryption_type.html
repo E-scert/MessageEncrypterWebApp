@@ -12,10 +12,13 @@ and open the template in the editor.
     </head>
     <body>
         <h1>Search by Encryption Type</h1>
-        <p>Please provide the encryption type below</p>
-        <form action="SearchByEncryptionTypeServlet.do" method="POST">
+        <p>Please provide the encryption type below<br>Enter <b>num</b> or <b>char</b></p>
+        <form action="SearchByEncryptionTypeServlet.do" method="get">
             <table>
-                
+                 <tr>
+                    <td>Enter encryption type:</td>
+                    <td><input type="text" name="type"/></td>
+                </tr>
                 <tr>
                     <td></td>
                     <td><input type="submit" value="GET"/></td>
