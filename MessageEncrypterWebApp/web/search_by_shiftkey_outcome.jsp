@@ -28,7 +28,7 @@
                 
                  <%
             
-          List<MessageEncrypter> list = (List<MessageEncrypter>)request.getAttribute("me");
+          List<MessageEncrypter> list = (List<MessageEncrypter>)request.getAttribute("list");
           
           if(list != null){
                   for(MessageEncrypter me : list){
@@ -43,7 +43,6 @@
                   </tr>
                   <%
                  }
- 
           }
 
         %>

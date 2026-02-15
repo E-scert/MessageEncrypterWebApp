@@ -88,7 +88,7 @@ public class MessageEncrypt implements MessageEncryptorInt{
 
     @Override
     public List<MessageEncrypter> findByShiftKey(Integer shiftKey) {
-        return em.createNamedQuery("findBySiftKey",MessageEncrypter.class).setParameter("shiftKey",shiftKey).getResultList();
+        return em.createNamedQuery("findByShiftKey",MessageEncrypter.class).setParameter("shifKeyNumber",shiftKey).getResultList();
     }
     
 }
