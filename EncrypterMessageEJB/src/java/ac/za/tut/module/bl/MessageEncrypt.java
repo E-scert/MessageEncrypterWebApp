@@ -100,7 +100,30 @@ public class MessageEncrypt implements MessageEncryptorInt{
           em.remove(entity);
         
         }
+         
    
     }
+    
             //urangani
+
+//    @Override
+//    public void updateData(Long id, String newMessage, Integer newShiftKey) {
+//        MessageEncrypter entity = em.find(MessageEncrypter.class, id);
+//        if(entity != null){
+//            
+//           if(newMessage != null && !newMessage.trim().isEmpty()){
+//           entity.setMessage(newMessage);
+//           } 
+//           if(newShiftKey != null){
+//               entity.setShifKeyNumber(newShiftKey);
+//           }
+//       
+//          
+//           
+//            
+//         em.merge(entity);
+//        }else{
+//        throw new IllegalArgumentException("Entity with ID "+id+" not found.");
+//        }
+//    }
 }
