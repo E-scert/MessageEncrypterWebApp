@@ -52,12 +52,28 @@ public class EncryptMessageNumberServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            String message = request.getParameter("message");
-        Integer shiftKey = Integer.parseInt(request.getParameter("shiftkey"));
+        
+        String message = request.getParameter("message");
+        Integer shiftKey = null;
         String encryptionType = request.getParameter("encryptionType");
         
+        
+        //try catch 
+        try{
+            shiftKey = Integer.parseInt(request.getParameter("shiftkey"));
+        }catch(NumberFormatException e){
+            request.setAttribute("error","Shift key must be a valid number.");
+             //request dispatcher 
+             RequestDispatcher disp = request.getRequestDispatcher("error.jsp");
+               //returns the data or communicates with the http
+             disp.forward(request, response);
+             return;
+        }
+        
+        
+        
+        
        MessageEncrypter entity = me.encryptNumberMessage(message, shiftKey,encryptionType);
-      
        //return results to the user
        request.setAttribute("message",entity.getMessage());
        request.setAttribute("encrypted",entity.getEncryptedMessage());

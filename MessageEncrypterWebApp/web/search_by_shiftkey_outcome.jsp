@@ -35,11 +35,11 @@
                   %>   
                   <tr>
                       
-                      <td><%=me.getId()%>&nbps;</td>
-                      <td><%=me.getMessage()%>&nbps;</td>
-                      <td><%=me.getEncryptedMessage()%>&nbps;</td>
-                      <td><%=me.getEncryptionType()%>&nbps;</td>
-                      <td><%=me.getShifKeyNumber()%>&nbps;</td>
+                      <td><%=me.getId()%>&nbsp;</td>
+                      <td><%=me.getMessage()%>&nbsp;</td>
+                      <td><%=me.getEncryptedMessage()%>&nbsp;</td>
+                      <td><%=me.getEncryptionType()%>&nbsp;</td>
+                      <td><%=me.getShifKeyNumber()%>&nbsp;</td>
                   </tr>
                   <%
                  }

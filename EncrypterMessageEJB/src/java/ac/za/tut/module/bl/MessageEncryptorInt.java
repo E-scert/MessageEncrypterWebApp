@@ -18,10 +18,14 @@ public interface MessageEncryptorInt {
     
     MessageEncrypter encryptMessage(String message, Integer shiftKey,String encryptionType);
     MessageEncrypter encryptNumberMessage(String message, Integer shiftKey, String encrypTionType);
+    
+    //delete 
+    void deleteData(Long id);
     //query methods
     List<MessageEncrypter> findAll();
     List<MessageEncrypter> findByEncryptionType(String encryptionType);
     List<MessageEncrypter> findByShiftKey(Integer shiftKey);
+    
     
     
     

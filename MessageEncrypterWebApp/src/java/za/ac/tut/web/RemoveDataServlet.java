@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author JREscert
  */
-public class SearchByShiftKeyServlet extends HttpServlet {
+public class RemoveDataServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +40,10 @@ public class SearchByShiftKeyServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet SearchByShiftKeyServlet</title>");            
+            out.println("<title>Servlet RemoveDataServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet SearchByShiftKeyServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet RemoveDataServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,29 +60,17 @@ public class SearchByShiftKeyServlet extends HttpServlet {
      */
     @EJB
     private MessageEncryptorInt mei;
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-          
-        String shiftKeyStr = request.getParameter("shiftkey");
-        Integer shiftNum = null; 
         
-        try{
-            shiftNum = Integer.parseInt(request.getParameter("shiftkey"));
-        }catch(NumberFormatException e){
-            request.setAttribute("error","Shift key must be a numeric.");
-            request.getRequestDispatcher("error.jsp").forward(request, response);
-            return;
-        }
-        List<MessageEncrypter> list = mei.findByShiftKey(shiftNum);
+        List<MessageEncrypter> list = mei.findAll();
         
-        //set attribute
-        request.setAttribute("list",list);
-        //dispstcher
-        RequestDispatcher disp = request.getRequestDispatcher("search_by_shiftkey_outcome.jsp");
+        request.setAttribute("list", list);
+        
+        RequestDispatcher disp = request.getRequestDispatcher("remove_data.jsp");
         disp.forward(request, response);
-        
-        
         
     }
 
@@ -97,7 +85,29 @@ public class SearchByShiftKeyServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+      String idString = request.getParameter("id");
+
+      //checks if the string is not empty
+        if(idString == null || idString.trim().isEmpty()){
+            request.setAttribute("error", "ID must be provided.");
+            request.getRequestDispatcher("error.jsp").forward(request, response);
+            return;
+
+        }
+        try{
+            Long id = Long.valueOf(idString);
+            mei.deleteData(id);
+            request.setAttribute("message", "Record with ID "+id+" deleted successfull");
+        
+        }catch(NumberFormatException e){
+            request.setAttribute("error", "Invalid ID format.");
+        
+        }
+        
+        RequestDispatcher disp = request.getRequestDispatcher("delete_data_outcome.jsp");
+           
+        disp.forward(request, response);
     }
 
     /**

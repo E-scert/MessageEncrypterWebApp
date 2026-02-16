@@ -39,8 +39,15 @@ public class ListAllServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
             List<MessageEncrypter> list = mei.findAll();
-            //set the attribute 
+            if(list== null || list.isEmpty()){
+            request.setAttribute("message","No data found.");
+            
+            }else{
+                //set the attribute 
             request.setAttribute("list",list);
+            }
+            
+            
             //dispatcher
             RequestDispatcher disp = request.getRequestDispatcher("all_data_outcome.jsp");
             disp.forward(request, response);

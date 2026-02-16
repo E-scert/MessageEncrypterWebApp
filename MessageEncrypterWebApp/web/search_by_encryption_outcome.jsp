@@ -19,11 +19,11 @@
         
         <table>
             <thead>
-            <th>ID</th>
-            <th>Message</th>
-            <th>Encrypted Message</th>
-            <th>Encryption Type</th>
-            <th>Shift key</th>
+            <th>ID:</th>
+            <th>Message:</th>
+            <th>Encrypted Message:</th>
+            <th>Encryption Type:</th>
+            <th>Shift key:</th>
             </thead>
             <tbody>
                 
@@ -43,7 +43,11 @@
                       </tr>
                       <%
                      }
-                 }
+                 }else{
+                    %>
+            <p>No list found</p>
+                 <% 
+                }
                 %>
             </tbody>
         </table>

@@ -50,8 +50,19 @@ public class EncryptMessageServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String message = request.getParameter("message");
-        Integer shiftKey = Integer.parseInt(request.getParameter("shiftkey"));
+        Integer shiftKey = null;
         String encryptiontype = request.getParameter("encryptionType");
+        
+        //try catch
+        try{
+            shiftKey = Integer.parseInt(request.getParameter("shiftkey"));
+        }catch(NumberFormatException e){
+            request.setAttribute("Error", "Shift key must be a valid number.");
+            
+             request.getRequestDispatcher("error.jsp").forward(request, response);
+             return;
+       
+        }
         
        MessageEncrypter entity = me.encryptMessage(message,shiftKey,encryptiontype);
       

@@ -22,6 +22,7 @@ import javax.persistence.NamedQuery;
     @NamedQuery(name="findAll",query="SELECT m FROM MessageEncrypter m"),
     @NamedQuery(name="findByEncryptionType",query="SELECT m FROM MessageEncrypter m WHERE m.encryptionType =:encryptionType"),
     @NamedQuery(name="findByShiftKey",query = "SELECT m FROM MessageEncrypter m WHERE m.shifKeyNumber =:shifKeyNumber")
+   
 })
 public class MessageEncrypter implements Serializable {
 
@@ -29,6 +30,7 @@ public class MessageEncrypter implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    
     
     private String message; 
     private String encryptedMessage;
@@ -114,10 +116,7 @@ public class MessageEncrypter implements Serializable {
             return false;
         }
         MessageEncrypter other = (MessageEncrypter) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
+        return !((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)));
     }
 
     @Override

@@ -41,6 +41,7 @@ public class SearchByEncryptionTypeServlet extends HttpServlet {
         String encryptionT = request.getParameter("type");
         String encryptionType ="character encryption";
         
+      if(encryptionT != null){  
         if(encryptionT.equalsIgnoreCase("char")){
             
              encryptionType ="character encryption";
@@ -50,10 +51,20 @@ public class SearchByEncryptionTypeServlet extends HttpServlet {
               encryptionType ="number encryption";
               
         }
-        
+      } 
+      
+      if(encryptionType == null || encryptionType != "character encryption" || encryptionType != "number encryption"){
+         request.setAttribute("error","Invalid encryption type. Use 'char' or 'num' ");
+          RequestDispatcher disp = request.getRequestDispatcher("error.jsp");
+        disp.forward(request, response);
+        return;
+      }
         List<MessageEncrypter> list = mei.findByEncryptionType(encryptionType);
         
         //set the attribute
+        if(list == null || list.isEmpty()){
+             request.setAttribute("message", "No results found for typ "+encryptionType);
+            }
         request.setAttribute("list",list);
         
         RequestDispatcher disp = request.getRequestDispatcher("search_by_encryption_outcome.jsp");

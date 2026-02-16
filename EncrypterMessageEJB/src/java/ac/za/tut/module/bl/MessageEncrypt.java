@@ -90,5 +90,17 @@ public class MessageEncrypt implements MessageEncryptorInt{
     public List<MessageEncrypter> findByShiftKey(Integer shiftKey) {
         return em.createNamedQuery("findByShiftKey",MessageEncrypter.class).setParameter("shifKeyNumber",shiftKey).getResultList();
     }
-    
+
+    @Override
+    public void deleteData(Long id) {
+        //remove the entity 
+            MessageEncrypter entity = em.find(MessageEncrypter.class,id);
+        
+         if(entity != null){
+          em.remove(entity);
+        
+        }
+   
+    }
+            //urangani
 }
