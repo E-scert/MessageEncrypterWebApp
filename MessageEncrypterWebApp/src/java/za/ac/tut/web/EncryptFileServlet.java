@@ -13,8 +13,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -39,19 +37,25 @@ public class EncryptFileServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String filePath = request.getParameter("file");
-        Path path = Paths.get(filePath);
-        String fileName = path.getFileName().toString();
         try{
-             //read file bytes
-             byte[] fileBytes = Files.readAllBytes(path);
-             
-             //encrypt using bean
-               FileEncryptionEntity entity = feb.encryptFile(fileBytes, fileName);
-                  
-                  //delete original file
-                  Files.delete(path);
-
+           //get uploded file
+           Part filePart = request.getPart("file");
+           String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+           
+                    ///read file content into byte
+                       InputStream is = filePart.getInputStream();
+                       ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+                       int bytesRead;
+                       byte[] data = new byte[1024]; //reads in chunks of 1kb
+                       
+                       while((bytesRead = is.read(data,0,data.length)) != -1){
+                         buffer.write(data,0,bytesRead);
+                       }
+                       byte[] fileBytes =buffer.toByteArray();
+                   
+                   //call the EJB to encrypt and persist
+                   FileEncryptionEntity entity = feb.encryptFile(fileBytes, fileName);
+                   //
                    //save encrypted file to Desktop 
                    String userHome = System.getProperty("user.home");
                    File dt = new File(userHome, "Desktop");
@@ -62,7 +66,7 @@ public class EncryptFileServlet extends HttpServlet {
                    }
 
                  //set attributes
-                   request.setAttribute("message", "File encrypted and saved successfully! and Original Deleted");
+                   request.setAttribute("message", "File encrypted and saved successfully!");
                    request.setAttribute("fileEntity",entity);
                    request.setAttribute("desktopPath",encryptedFile.getAbsolutePath());
                    
