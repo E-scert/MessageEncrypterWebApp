@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Encrypt File Page</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>Encrypt a file</h1>
+        <p>Select file Encrypt</p>
+        <form action="EncryptFileServlet.do" method="POST" enctype="multipart/form-data">
+            
+            <table>
+                <tr>
+                    <td>Select File:</td>
+                    <td><input type="file" name="file"  /></td>
+                </tr>
+                
+                 <tr>
+                    <td></td>
+                    <td><input type="submit" name="ENCRYPT"/></td>
+                </tr>
+                
+            </table>
+            
+        </form>
+    </body>
+</html>

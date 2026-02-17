@@ -22,7 +22,7 @@ public interface MessageEncryptorInt {
     //delete 
     void deleteData(Long id);
     //update 
-    void updateData(Long id, String newMessage, String newEncryptedMessage, String newType, Integer newShiftKey);
+    //void updateData(Long id, String newMessage, Integer newShiftKey);
     //query methods
     List<MessageEncrypter> findAll();
     List<MessageEncrypter> findByEncryptionType(String encryptionType);
